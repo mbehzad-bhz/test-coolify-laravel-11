@@ -1,5 +1,12 @@
 [phases.setup]
-nixPkgs = ["mysql-client"]
+nixPkgs = ["mysql-client", "php", "php-curl", "php-mbstring", "php-xml", "php-bcmath", "php-zip", "php-mysql"]
+
+[phases.install]
+cmds = [
+    "composer install --ignore-platform-reqs",
+    "chmod -R 775 storage bootstrap/cache",
+    "php artisan key:generate"
+]
 
 [phases.build]
 cmds = [
